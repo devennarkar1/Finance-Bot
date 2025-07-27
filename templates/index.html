@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Finance Chatbot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #e0e7ff;
+            padding: 20px;
+        }
+        .chatbox {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 650px;
+            margin: auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+        input[type="text"] {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #3730a3;
+        }
+        .chat-response {
+            margin-top: 20px;
+        }
+        .user-msg, .bot-msg {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            max-width: 85%;
+            font-size: 15.5px;
+            line-height: 1.5;
+        }
+        .user-msg {
+            background-color: #dbeafe;
+            align-self: flex-end;
+            text-align: right;
+            margin-left: auto;
+        }
+        .bot-msg {
+            background-color: #f0fdf4;
+            align-self: flex-start;
+            white-space: pre-wrap;
+        }
+        .chat-log {
+            display: flex;
+            flex-direction: column;
+        }
+        .bot-msg strong {
+            color: #0f172a;
+        }
+        .bot-msg b {
+            color: #111827;
+        }
+    </style>
+</head>
+<body>
+    <h2>💼 Ask Your Financial Question</h2>
+    <form method="POST">
+        <input type="text" name="message" required>
+        <button type="submit">Ask</button>
+    </form>
+
+    {% if reply %}
+        <hr>
+        <div style="font-size: 1.1em;">{{ reply|safe }}</div>
+    {% endif %}
+
+    {% if chat_history %}
+        <hr>
+        <h3>🗣️ Chat History</h3>
+        <ul>
+            {% for chat in chat_history %}
+                <li><b>You:</b> {{ chat.user }}<br><b>Bot:</b> {{ chat.bot|safe }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

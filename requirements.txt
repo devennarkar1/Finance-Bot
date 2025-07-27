@@ -1,0 +1,7 @@
+Flask
+gspread
+pandas
+oauth2client
+groq
+markdown2
+python-dotenv
